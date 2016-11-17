@@ -3,6 +3,7 @@ package com.smartglossa.ticket;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.Statement;
 
 import javax.servlet.ServletException;
@@ -42,16 +43,12 @@ public class TicketServlet extends HttpServlet {
 				statement.execute(query);
 				add.put("status", 1);
 			} catch (Exception e) {
-				try {
+				
 					add.put("status", 0);
 					add.put("Message", "Internal Error occur");
 					e.printStackTrace();
 					response.getWriter().print(add);
-				} catch (JSONException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				response.getWriter().print(add);
+				
 
 			}
 		} else if (operation.equals("update")) {
@@ -70,15 +67,12 @@ public class TicketServlet extends HttpServlet {
 				update.put("status", 1);
 			} catch (Exception e) {
 				// TODO: handle exception
-				try {
+				
 					update.put("states", 0);
 					update.put("Message", "Internal Error Occur");
 					response.getWriter().print(update);
 					e.printStackTrace();
-				} catch (JSONException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+				
 
 			}
 
@@ -95,12 +89,9 @@ public class TicketServlet extends HttpServlet {
 				delete.put("status", 1);
 
 			} catch (Exception e) {
-				try {
+				
 					delete.put("Message", "Internal Error Occur");
-				} catch (JSONException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+				
 				response.getWriter().print(delete);
 			}
 		} else if (operation.equals("get")) {
@@ -122,13 +113,10 @@ public class TicketServlet extends HttpServlet {
 			} catch (Exception e) {
 				// TODO: handle exception
 				JSONObject error = new JSONObject();
-				try {
+				
 					error.put("message", "Internal Error Occur");
 					e.printStackTrace();
-				} catch (JSONException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+				
 				response.getWriter().print(error);
 			}
 		}
