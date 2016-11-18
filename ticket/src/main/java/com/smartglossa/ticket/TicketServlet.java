@@ -43,12 +43,11 @@ public class TicketServlet extends HttpServlet {
 				statement.execute(query);
 				add.put("status", 1);
 			} catch (Exception e) {
-				
-					add.put("status", 0);
-					add.put("Message", "Internal Error occur");
-					e.printStackTrace();
-					response.getWriter().print(add);
-				
+
+				add.put("status", 0);
+				add.put("Message", "Internal Error occur");
+				e.printStackTrace();
+				response.getWriter().print(add);
 
 			}
 		} else if (operation.equals("update")) {
@@ -67,12 +66,11 @@ public class TicketServlet extends HttpServlet {
 				update.put("status", 1);
 			} catch (Exception e) {
 				// TODO: handle exception
-				
-					update.put("states", 0);
-					update.put("Message", "Internal Error Occur");
-					response.getWriter().print(update);
-					e.printStackTrace();
-				
+
+				update.put("states", 0);
+				update.put("Message", "Internal Error Occur");
+				response.getWriter().print(update);
+				e.printStackTrace();
 
 			}
 
@@ -89,9 +87,9 @@ public class TicketServlet extends HttpServlet {
 				delete.put("status", 1);
 
 			} catch (Exception e) {
-				
-					delete.put("Message", "Internal Error Occur");
-				
+
+				delete.put("Message", "Internal Error Occur");
+
 				response.getWriter().print(delete);
 			}
 		} else if (operation.equals("get")) {
@@ -113,13 +111,41 @@ public class TicketServlet extends HttpServlet {
 			} catch (Exception e) {
 				// TODO: handle exception
 				JSONObject error = new JSONObject();
-				
-					error.put("message", "Internal Error Occur");
-					e.printStackTrace();
-				
+
+				error.put("message", "Internal Error Occur");
+				e.printStackTrace();
+
 				response.getWriter().print(error);
+			}
+		} else if (operation.equals("getAllTicket")) {
+			JSONArray res = new JSONArray();
+			try {
+				Class.forName("com.mysql.jdbc.Driver");
+				Connection connection = DriverManager.getConnection(url, username, password);
+				Statement statement = connection.createStatement();
+				String query = "select * from ticket";
+				ResultSet rs = statement.executeQuery(query);
+				while (rs.next()) {
+					JSONObject obj = new JSONObject();
+					obj.put("ticketId", rs.getInt(1));
+					obj.put("from", rs.getString(2));
+					obj.put("to", rs.getString(3));
+					obj.put("cost", rs.getFloat(4));
+
+					res.put(obj);
+				}
+				response.getWriter().print(res);
+			} catch (Exception e) {
+				JSONObject obj = new JSONObject();
+				try {
+					obj.put("Message", "Internal Error Occur");
+					e.printStackTrace();
+				} catch (JSONException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				response.getWriter().print(obj);
 			}
 		}
 	}
-
 }
