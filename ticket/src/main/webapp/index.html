@@ -1,14 +1,33 @@
-
-<!DOCTYPE html>
 <html>
 <head>
-	<title>Ticket Software</title>
-	<script type="text/javascript" src="js/external/jquery.js"></script>
-	<script type="text/javascript" src="js/ticket.js"></script>
-	<script type="text/javascript" src="js/dom.js"></script>
-	<link rel="stylesheet" type="text/css" href="css/style.css">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Ticket Software</title>
+
+<script type="text/javascript" src="js/external/jquery.js"></script>
+<script type="text/javascript" src="js/dom.js"></script>
+<script type="text/javascript" src="js/list.js"></script>
+<script type="text/javascript" src="js/ticket.js"></script>
+
+<link rel="stylesheet" type="text/css" href="css/style.css">
+
+
 </head>
 <body onload="myFunction()">
+	<div class="total">
+		<h1>Bill Total</h1>
+		<h2>0</h2>
+		<h1>Payment</h1>
+		<table>
+			<tr>
+				<td><label>Cash:</label></td>
+				<td><input type=text id="cash"></td>
+			</tr>
+			<tr>
+				<td><label>Balance:</label></td>
+				<td><input type=text id="balance" readonly="true"></td>
+			</tr>
+		</table>
+	</div>
 
 </body>
 </html>
