@@ -88,15 +88,16 @@ function myFunction() {
 	var td11 = document.createElement("td");
 	var button2 = document.createElement("button");
 	var button3 = document.createTextNode("Update");
+	button2.setAttribute("id", "update");
 	button2.appendChild(button3);
 	td11.appendChild(button2);
 	tr5.appendChild(td11);
 	table.appendChild(tr5);
 
-	var ticket = document.createElement("h2");
+	var ticket = document.createElement("h3");
 	var ticketname = document.createTextNode("Person Ticket");
 	ticket.appendChild(ticketname);
-	ticket.setAttribute("id", "list");
+	ticket.setAttribute("id", "lists");
 	document.body.appendChild(ticket);
 
 	var table1 = document.createElement("table");
@@ -122,7 +123,7 @@ function myFunction() {
 	table1.appendChild(tablerow);
 
 	var tabledata3 = document.createElement("td");
-	var t4 = document.createTextNode("Total Persion");
+	var t4 = document.createTextNode("Total Person");
 	tabledata3.appendChild(t4);
 	tablerow.appendChild(tabledata3);
 	table1.appendChild(tablerow);
@@ -139,6 +140,10 @@ function myFunction() {
 	tablerow.appendChild(tabledata5);
 	table1.appendChild(tablerow);
 
+	var dis = document.createElement("div");
+	dis.setAttribute("class", "billing");
+	document.body.appendChild(dis);
+
 	var list = document.createElement("h3");
 	var list1 = document.createTextNode("Display Cost List");
 	list.setAttribute("id", "downs");
@@ -148,4 +153,12 @@ function myFunction() {
 	var display = document.createElement("div");
 	display.setAttribute("class", "displayAll");
 	document.body.appendChild(display);
+
+	var print = document.createElement("button");
+	var print1 = document.createTextNode("Print");
+	print.setAttribute("value", "Print");
+	print.setAttribute("id", "print");
+	print.appendChild(print1);
+	document.body.appendChild(print);
+
 }
